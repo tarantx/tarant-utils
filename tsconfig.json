@@ -10,6 +10,6 @@
     "resolveJsonModule": true,
     "lib": ["es6"]
   },
-  "files": ["./ambient.d.ts","./lib/index.ts"],
+  "files": ["./lib/index.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
