@@ -1,5 +1,5 @@
 {
-  "name": "tarant-db-persist",
+  "name": "tarant-utils",
   "version": "0.3.2",
   "description": "",
   "main": "dist/index.js",
@@ -8,7 +8,7 @@
     "Kevin Mas Ruiz <masruizkevin@gmail.com>",
     "Kanekotic <alvarojosepl@gmail.com>"
   ],
-  "repository": "git@github.com:tarantx/tarant-sync-client.git",
+  "repository": "git@github.com:tarantx/tarant-utils.git",
   "license": "MIT",
   "keywords": [
     "actor system",
