@@ -1,84 +1,70 @@
-# ![logomakr_8lsyys](https://user-images.githubusercontent.com/3071208/50820118-329ab800-132c-11e9-98d9-eac3805765ae.png)
+# tarant-utils
 
-
-[![npm](https://img.shields.io/npm/v/tarant-db-persist.svg)](https://www.npmjs.com/package/tarant-db-persist)
-[![Build Status](https://travis-ci.org/tarantx/tarant-db-persist.svg?branch=master)](https://travis-ci.org/tarantx/tarant-db-persist)
-[![Coverage Status](https://coveralls.io/repos/github/tarantx/tarant-db-persist/badge.svg?branch=master)](https://coveralls.io/github/tarantx/tarant-db-persist?branch=master)
+[![npm](https://img.shields.io/npm/v/tarant-utils.svg)](https://www.npmjs.com/package/tarant-utils)
+[![Build Status](https://travis-ci.org/tarantx/tarant-utils.svg?branch=master)](https://travis-ci.org/tarantx/tarant-utils)
+[![Coverage Status](https://coveralls.io/repos/github/tarantx/tarant-utils/badge.svg?branch=master)](https://coveralls.io/github/tarantx/tarant-utils?branch=master)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 ![issues Welcome](https://img.shields.io/badge/issues-welcome-brightgreen.svg)
-![npm](https://img.shields.io/npm/l/tarant-db-persist.svg)
-![GitHub issues](https://img.shields.io/github/issues/tarantx/tarant-db-persist.svg)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/tarantx/tarant-db-persist.svg)
-![Downloads](https://img.shields.io/npm/dt/tarant-db-persist.svg)
+![npm](https://img.shields.io/npm/l/tarant-utils.svg)
+![GitHub issues](https://img.shields.io/github/issues/tarantx/tarant-utils.svg)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/tarantx/tarant-utils.svg)
+![Downloads](https://img.shields.io/npm/dt/tarant-utils.svg)
 
 ## Motivation
 
-Provide the capabilities to actors on the backend to be persisted using waterline adapters.
+Provide a set of utils that help apply some of the paterns that tarant uses.
 
 ## Installation
 
-add it to your project using `npm install tarant-db-persist --save` or `yarn add tarant-db-persist`
+add it to your project using `npm install tarant-utils --save` or `yarn add tarant-utils`
 
 ## Usage
 
-Initialize the sync client with the waterline adapter from the persist storage you will be interested on
+### Decorator
+
+We recomend to use the decorator pattern to keaping separation of concerns in between the business logic of an actor and the logic that some of the resolvers and materializers require.
+
+For example having the next actor
 
 ```js
-import { ActorSystem, ActorSystemConfigurationBuilder } from 'tarant';
-import * as diskAdapter from 'sails-disk';
-import { PersistResolverMaterializer } from 'tarant-db-persist';
-import AppActor from '../AppActor';
 
-const config = {
-    adapter: {
-        type: diskAdapter,
-        settings: {
-          inMemoryOnly: true
-        },
-      },
-      actorTypes: { AppActor }
-  };
-
-const persister = await PersistMaterializer.create(config)
-
-const system : any = ActorSystem.for(ActorSystemConfigurationBuilder.define()
-    .withMaterializers([persister])
-    .withResolvers([persister])
-    .done())  
-
-```
-
-your actors will require to implement IUpdatable (UpdateFrom) and IExportable (toJson)
-
-```js
-import { Actor } from "tarant";
-import { IUpdatable, IExportable } from "tarant-db-persist"
-
-export default class AppActor extends Actor implements IUpdatable, IExportable {
+class AppActor extends Actor {
 
   constructor(name: string) {
       super(name)
   }
 
-  addOne() {
+  public addOne() : void {
       this.counter++
   }
 
-  toJson(){
+   public counter = 1; 
+}
+```
+the definition of the serialization information could be done like
+```js
+class SerializationDecorator extends decorator<AppActor> {
+    constructor(actor: AppActor) {
+        super(actor)
+    }
+
+    toJson() {
         return {
-            id: this.id,
-            type:"AppActor",
-            counter: this.counter
+            id: this.actor.id,
+            type: "AppActor",
+            counter: this.actor.counter
         }
     }
 
     updateFrom({ counter }: any): void {
-        this.counter = counter
+        this.actor.counter = counter
     }
-
-    private counter = 1; 
 }
-
+```
+and the mix the actor and the decorator for it to be resolved in the actor system that is registered
+```js
+const DecoratedActor = decorate(AppActor, SerializationDecorator)
+export default DecoratedActor
 ```
 
 ##### Created my free [logo](https://logomakr.com/8lSyYS) at <a href="http://logomakr.com" title="Logo Makr">LogoMakr.com</a> 
