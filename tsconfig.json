@@ -1,14 +1,13 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "declaration": true,
     "outDir": "./dist",
     "strict": true,
     "importHelpers": true,
     "resolveJsonModule": true,
-    "lib": ["es6"]
   },
   "files": ["./lib/index.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]
