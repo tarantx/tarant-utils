@@ -6,7 +6,7 @@ export default function decorate<T extends Actor>(SuperClass: Constructor<T>, ..
   return class extends (SuperClass as Constructor<Actor>) {
     constructor(params: any) {
       super(params)
-      decorators.forEach(decorator => {
+      decorators.forEach((decorator) => {
         const instance = new decorator(this)
         const allNames: string[] = Object.getOwnPropertyNames(Object.getPrototypeOf(instance)).filter(
           (name: string) => name !== 'constructor',
