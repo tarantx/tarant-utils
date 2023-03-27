@@ -1,2 +1,3 @@
-export { default as decorate } from './decorate'
-export { default as Decorator } from './decorator'
+export { decorate } from './decorate'
+export { Decorator } from './decorator'
+export { Constructor } from './Constructor'

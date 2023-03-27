@@ -1,8 +1,7 @@
 import { Actor } from 'tarant'
+import { Constructor } from './Constructor'
 
-type Constructor<T extends Actor> = new (...args: any[]) => T
-
-export default function decorate<T extends Actor>(SuperClass: Constructor<T>, ...decorators: any[]): Constructor<T> {
+export function decorate<T extends Actor>(SuperClass: Constructor<T>, ...decorators: any[]): Constructor<T> {
   return class extends (SuperClass as Constructor<Actor>) {
     constructor(params: any) {
       super(params)
@@ -12,9 +11,8 @@ export default function decorate<T extends Actor>(SuperClass: Constructor<T>, ..
           (name: string) => name !== 'constructor',
         )
         allNames.forEach((name: string) => {
-          if (!(this as any).constructor.prototype[name]) {
+          if (!(this as any).constructor.prototype[name])
             (this as any).constructor.prototype[name] = (...parameters: any[]) => instance[name](...parameters)
-          }
         })
       })
     }
