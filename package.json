@@ -26,9 +26,9 @@
     "test:dev": "jest --watchAll test",
     "test:cov": "npm run format && npm run lint && jest --coverage",
     "push": "npm run test && git push",
-    "deploy:major": "npm run version --major",
-    "deploy:minor": "npm run version --minor",
-    "deploy:patch": "npm run version --patch",
+    "deploy:major": "npm version --major",
+    "deploy:minor": "npm version --minor",
+    "deploy:patch": "npm version --patch",
     "deploy:push": "git push && git push --tags",
     "preversion": "npm run test"
   },
