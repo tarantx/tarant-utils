@@ -19,9 +19,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cache-
       - name: install dependencies
-        run: yarn install
+        run: npm install
       - name: test
-        run: yarn test:cov
+        run: npm run test:cov
       - uses: mikeal/merge-release@master
         if: github.event_name != 'pull_request'
         env:
