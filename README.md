@@ -67,6 +67,3 @@ and the mix the actor and the decorator for it to be resolved in the actor syste
 const DecoratedActor = decorate(AppActor, SerializationDecorator)
 export default DecoratedActor
 ```
-
-##### Created my free [logo](https://logomakr.com/8lSyYS) at <a href="http://logomakr.com" title="Logo Makr">LogoMakr.com</a> 
-
