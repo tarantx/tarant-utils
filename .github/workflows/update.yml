@@ -17,9 +17,9 @@ jobs:
       - name: install upgrade
         run: npm outdated | awk 'NR>1 {print $1"@"$4}' | xargs npm install
       - name: install dependencies
-        run: npm run install
+        run: npm install
       - name: run tests
-        run: npm run test
+        run: npm test
       - uses: EndBug/add-and-commit@v9
         with:
           default_author: github_actions
