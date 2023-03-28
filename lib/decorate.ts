@@ -1,6 +1,7 @@
 import { Actor } from 'tarant'
 import { Constructor } from './Constructor'
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export function decorate<T extends Actor>(SuperClass: Constructor<T>, ...decorators: any[]): Constructor<T> {
   return class extends (SuperClass as Constructor<Actor>) {
     constructor(params: any) {
