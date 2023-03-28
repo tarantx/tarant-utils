@@ -1,15 +1,16 @@
-# tarant-utils
+# ![tarant-utils](https://user-images.githubusercontent.com/3071208/228261034-ed02c1e7-9e94-4b23-9b8b-09cf5e1f887a.png)
 
+![Downloads](https://img.shields.io/npm/dt/tarant-utils.svg)
 [![npm](https://img.shields.io/npm/v/tarant-utils.svg)](https://www.npmjs.com/package/tarant-utils)
-[![Build Status](https://travis-ci.org/tarantx/tarant-utils.svg?branch=master)](https://travis-ci.org/tarantx/tarant-utils)
-[![Coverage Status](https://coveralls.io/repos/github/tarantx/tarant-utils/badge.svg?branch=master)](https://coveralls.io/github/tarantx/tarant-utils?branch=master)
+![npm](https://img.shields.io/npm/l/tarant-utils.svg)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/tarantx/tarant-utils/build.yml?branch=master)
+[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+[![Maintainability](https://api.codeclimate.com/v1/badges/665e6f6b5b5fefc09e68/maintainability)](https://codeclimate.com/github/tarantx/tarant-utils/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/665e6f6b5b5fefc09e68/test_coverage)](https://codeclimate.com/github/tarantx/tarant-utils/test_coverage)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 ![issues Welcome](https://img.shields.io/badge/issues-welcome-brightgreen.svg)
-![npm](https://img.shields.io/npm/l/tarant-utils.svg)
 ![GitHub issues](https://img.shields.io/github/issues/tarantx/tarant-utils.svg)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/tarantx/tarant-utils.svg)
-![Downloads](https://img.shields.io/npm/dt/tarant-utils.svg)
-
 ## Motivation
 
 Provide a set of utils that help apply some of the paterns that tarant uses.
