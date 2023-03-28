@@ -19,7 +19,7 @@
     "tarant"
   ],
   "scripts": {
-    "prepare": "parcel build",
+    "prepare": "husky install && parcel build",
     "format": "prettier --write \"**/*.ts\" && eslint --fix lib/**/*.ts",
     "lint": "eslint",
     "test": "npm run format && npm run lint && jest test",
@@ -30,7 +30,9 @@
     "deploy:minor": "npm version --minor",
     "deploy:patch": "npm version --patch",
     "deploy:push": "git push && git push --tags",
-    "preversion": "npm run test"
+    "preversion": "npm run test",
+    "lint-staged": "lint-staged",
+    "commit": "git add . && cz"
   },
   "devDependencies": {
     "@parcel/packager-ts": "2.8.3",
@@ -49,12 +51,21 @@
     "parcel": "2.8.3",
     "prettier": "2.8.7",
     "ts-jest": "^29.0.5",
-    "typescript": "5.0.2"
+    "typescript": "5.0.2",
+    "cz-format-extension": "1.5.0",
+    "cz-conventional-changelog": "3.3.0",
+    "husky": "8.0.1",
+    "commitizen": "^4.2.5"
   },
   "peerDependencies": {
     "tarant": "3.x"
   },
   "jest": {
     "preset": "ts-jest"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-format-extension"
+    }
   }
 }
